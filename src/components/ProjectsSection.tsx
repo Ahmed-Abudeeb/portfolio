@@ -1,17 +1,46 @@
 "use client";
 
-import { useState } from "react";
-import { useInView } from "react-intersection-observer";
+import { useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import ThesisModal from "./ThesisModal";
-import { cn } from "@/lib/utils";
 import type { Project } from "@/lib/types";
+
+function TiltCard({ children, className }: { children: React.ReactNode; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    ref.current.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg)`;
+  };
+
+  const handleMouseLeave = () => {
+    if (!ref.current) return;
+    ref.current.style.transform = "perspective(800px) rotateY(0deg) rotateX(0deg)";
+  };
+
+  return (
+    <div
+      ref={ref}
+      className={className}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ transition: "transform 0.1s ease" }}
+    >
+      {children}
+    </div>
+  );
+}
 
 export default function ProjectsSection({ projects }: { projects: Project[] }) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
 
   const featured = projects.find((p) => p.featured);
   const others = projects.filter((p) => !p.featured);
@@ -19,42 +48,50 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
   return (
     <section id="projects" className="py-24 md:py-32">
       <div className="max-w-5xl mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-12">
+        <motion.h2
+          className="text-3xl md:text-4xl font-bold text-slate-900 mb-12"
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           Projects
-        </h2>
+        </motion.h2>
 
         {featured && (
-          <div
+          <motion.div
             ref={ref}
-            className={cn(
-              "mb-10 transition-all duration-700",
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            )}
+            initial={{ opacity: 0, y: 40 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7 }}
+            className="mb-10"
           >
-            <Card
-              className="relative border-accent-200 bg-gradient-to-br from-accent-50 to-white cursor-pointer hover:shadow-md transition-shadow"
-              onClick={() => setSelectedProject(featured)}
-            >
-              <div className="absolute top-3 right-3">
-                <Badge variant="default" className="flex items-center gap-1">
-                  <Sparkles className="h-3 w-3" /> Featured
-                </Badge>
-              </div>
-              <CardHeader>
-                <CardTitle className="text-xl">{featured.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-slate-600 mb-4">{featured.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {featured.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary">
-                      {tag}
-                    </Badge>
-                  ))}
+            <TiltCard>
+              <Card
+                className="relative border-accent-200 bg-gradient-to-br from-accent-50 to-white cursor-pointer hover:shadow-lg transition-shadow"
+                onClick={() => setSelectedProject(featured)}
+              >
+                <div className="absolute top-3 right-3">
+                  <Badge variant="default" className="flex items-center gap-1">
+                    <Sparkles className="h-3 w-3" /> Featured
+                  </Badge>
                 </div>
-              </CardContent>
-            </Card>
-          </div>
+                <CardHeader>
+                  <CardTitle className="text-xl">{featured.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-slate-600 mb-4">{featured.description}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {featured.tags.map((tag) => (
+                      <Badge key={tag} variant="secondary">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </TiltCard>
+          </motion.div>
         )}
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -89,32 +126,38 @@ function ProjectCard({
   index: number;
   onClick: () => void;
 }) {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <div
+    <motion.div
       ref={ref}
-      className={cn(
-        "transition-all duration-500",
-        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-      )}
-      style={{ transitionDelay: `${index * 100}ms` }}
+      initial={{ opacity: 0, y: 30 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay: index * 0.1, duration: 0.5 }}
     >
-      <Card className="h-full cursor-pointer hover:shadow-md transition-shadow" onClick={onClick}>
-        <CardHeader>
-          <CardTitle className="text-lg">{project.title}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-sm text-slate-600 mb-4 line-clamp-3">{project.description}</p>
-          <div className="flex flex-wrap gap-1.5">
-            {project.tags.map((tag) => (
-              <Badge key={tag} variant="secondary">
-                {tag}
-              </Badge>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+      <TiltCard>
+        <Card
+          className="h-full cursor-pointer hover:shadow-lg transition-shadow"
+          onClick={onClick}
+        >
+          <CardHeader>
+            <CardTitle className="text-lg">{project.title}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-slate-600 mb-4 line-clamp-3">
+              {project.description}
+            </p>
+            <div className="flex flex-wrap gap-1.5">
+              {project.tags.map((tag) => (
+                <Badge key={tag} variant="secondary">
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </TiltCard>
+    </motion.div>
   );
 }

@@ -1,7 +1,7 @@
 name: Ahmed Abudeeb
 title: "M.S. in Chemical Engineering"
 tagline: "Bridging molecular simulation and machine learning to solve real-world chemical engineering challenges"
-photo: /images/profile.jpg
+photo: /images/image.png
 resumeFile: /resume.pdf
 bio:
   - "I am a Master's student in Chemical Engineering at King Fahd University of Petroleum and Minerals (KFUPM), currently conducting thesis research focused on developing a machine learning-based equation of state (EoS) for Lennard-Jones fluids. I hold a Bachelor's degree in Chemical Engineering from KFUPM with a concentration in Renewable Energy and Energy Storage."
@@ -16,6 +16,6 @@ stats:
   - label: "Location"
     value: "Saudi Arabia"
 socials:
-  linkedin: https://www.linkedin.com/in/ahmed-abudeeb-17156328b
-  github: https://github.com/ahmedabudeeb
+  linkedin: https://www.linkedin.com/in/ahmed-abudeeb/
+  github: https://github.com/Ahmed-Abudeeb
   email: ahmed2001-99@hotmail.com
