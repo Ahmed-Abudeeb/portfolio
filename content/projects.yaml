@@ -1,0 +1,37 @@
+- slug: thesis-eos-ml
+  title: "ML-Driven Equation of State for Lennard-Jones Fluids"
+  description: "Developing a novel EoS using molecular simulation data and machine learning to accurately predict thermodynamic properties of Lennard-Jones fluids."
+  tags:
+    - "Machine Learning"
+    - "Thermodynamics"
+    - "Python"
+    - "Thesis"
+  featured: true
+
+- slug: mof-co2-capture
+  title: "Metal Organic Frameworks for CO₂ Capture — A Review"
+  description: "Comprehensive review of recent advances in MOFs for CO₂ capture, examining functionalization strategies, adsorption capacities, and scalability. Published in Surfaces and Interfaces (Elsevier)."
+  tags:
+    - "CO₂ Capture"
+    - "MOFs"
+    - "Review"
+    - "Published 2025"
+  link: "https://doi.org/10.1016/j.surfin.2025.107381"
+
+- slug: naphtha-kinetic-modeling
+  title: "AI-Powered Kinetic Modeling of Naphtha Hydrotreatment"
+  description: "Applied artificial intelligence for kinetic modeling of a commercial naphtha hydrotreating plant using real operational data and regression techniques."
+  tags:
+    - "Kinetic Modeling"
+    - "Machine Learning"
+    - "Hydrotreatment"
+    - "Python"
+
+- slug: plastic-gasification
+  title: "Plastic Waste Gasification to Green Methanol"
+  description: "Senior design project utilizing gasification to recycle plastic waste into syngas, converted to green methanol and hydrogen, with fuel cells for renewable energy production."
+  tags:
+    - "Gasification"
+    - "Waste-to-Energy"
+    - "Methanol"
+    - "Fuel Cells"

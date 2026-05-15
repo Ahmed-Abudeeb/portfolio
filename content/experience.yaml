@@ -1,0 +1,19 @@
+- company: "King Fahd University of Petroleum and Minerals (KFUPM)"
+  role: "Graduate Research Assistant / Teaching Assistant"
+  location: "Dhahran, Saudi Arabia"
+  startDate: "Sep 2023"
+  endDate: "May 2026"
+  bullets:
+    - "Conducting thesis research on developing a novel ML-driven equation of state for Lennard-Jones fluids, bridging chemical thermodynamics with modern AI for predictive modeling"
+    - "Graded assignments and examinations for undergraduate Reaction Kinetics and graduate Artificial Intelligence in Chemical Engineering courses"
+    - "Authored and published a comprehensive review on MOFs for CO₂ capture in Surfaces and Interfaces (Elsevier)"
+
+- company: "KFUPM — Micro Activity Test (MAT) Unit"
+  role: "Intern"
+  location: "Dhahran, Saudi Arabia"
+  startDate: "Jun 2022"
+  endDate: "Aug 2022"
+  bullets:
+    - "Trained on the Micro Activity Test (MAT) unit for assessing fluid catalytic cracking (FCC) catalyst performance"
+    - "Evaluated experimental and commercial catalyst samples using standardized testing protocols"
+    - "Analyzed catalyst performance data to support ongoing research and development efforts"

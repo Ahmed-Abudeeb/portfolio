@@ -1,0 +1,25 @@
+- category: "Programming & ML"
+  items:
+    - "Python"
+    - "MATLAB"
+    - "Machine Learning"
+    - "Symbolic Regression"
+    - "Kinetic Modeling"
+    - "Data Analysis"
+
+- category: "Process & Simulation"
+  items:
+    - "Aspen Plus"
+    - "MATLAB/Simulink"
+    - "Process Simulation"
+    - "FCC Catalyst Testing"
+    - "Gasification Processes"
+
+- category: "Chemical Engineering"
+  items:
+    - "Thermodynamics"
+    - "Reaction Kinetics"
+    - "Heat & Mass Transfer"
+    - "CO₂ Capture Technologies"
+    - "Fuel Cells & Batteries"
+    - "Renewable Energy Systems"
